@@ -55,5 +55,5 @@ int main(){
     cout << "閾値："<< R_t << endl;
 
 
-    return 
+    return 0;
 }
