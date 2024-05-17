@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//式1
 double R_var(double x, double y){
     double avg  = x - y;
     if(avg >= 1)
@@ -15,6 +16,13 @@ double R_var(double x, double y){
     else{
         return avg;
     }
+}
+
+//式2
+double Expression(double max, double min , double avg){
+
+    double Thredshold = min + (abs(max - min)* abs(avg));
+    return Thredshold;
 }
 
 void Rank_avg(string x, double y)
@@ -81,7 +89,8 @@ int main(){
     cout << "R_avg:"<< R_avg << endl;
     cout << "R_min_now, R_max_now:" << R_min_now <<", " << R_max_now <<endl;
     
-    double R_t = R_min_now + (abs(R_max_now - R_min_now)* abs(R_avg));
+    //double R_t = R_min_now + (abs(R_max_now - R_min_now)* abs(R_avg));
+    double R_t = Expression(R_max_now, R_min_now, R_avg);
 
     cout << "閾値："<< R_t << endl;
 
