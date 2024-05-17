@@ -2,55 +2,86 @@
 
 using namespace std;
 
-double R_var(double x){
-    if(x >= 0)
+double R_var(double x, double y){
+    double avg  = x - y;
+    if(avg >= 1)
     {
         return 1;
     }
-    else 
+    else if(avg < 0)
     {
         return 0.1;
     }
+    else{
+        return avg;
+    }
+}
+
+void Rank_avg(string x, double y)
+{
+    cout << x <<"平均ランク値：" << y << endl;
 }
 
 int main(){
     int First_node, Now_node;
     
-    cout << "ノード数:" ;
+    cout << "初期ノード数:" ;
     cin >> First_node;
     int A[First_node+9];
 
-    cout <<"ノードランク値をそれぞれ入力"<<endl;
+    cout <<"初期ノードランク値をそれぞれ入力"<<endl;
     for(int i = 1; i<= First_node; i++) cin >> A[i];
 
-    // cout << "現在のノード数:" ;
-    // cin >> Now_node;
-    // int B[Now_node+9];
+    int R_min_first = A[1];
+    double First_avg = 0;
+    for(int i = 1; i<= First_node; i++) 
+        {
+            First_avg += A[i];
+            R_min_first = min(R_min_first, A[i]);
+        }
 
-    // cout <<"現在の隣接ノードランク値をそれぞれ入力"<<endl;
-    // for(int i = 1; i<= Now_node; i++) cin >> A[i];
+    First_avg = (First_avg / First_node);
+
+    Rank_avg("初期" , First_avg); //平均ランク値出力
+    //cout <<"初期平均ランク値：" << First_avg << endl;
+
+    cout << "現在のノード数:" ;
+    cin >> Now_node;
+    int B[Now_node+9];
+
+    cout <<"現在の隣接ノードランク値をそれぞれ入力"<<endl;
+    for(int i = 1; i<= Now_node; i++) cin >> B[i];
 
     double Now_avg = 0;
-    double first_avg = 7.5;
-    double avg = 0;
-    int R_min = A[1], R_max = 0;
 
-    for(int i = 1; i<= First_node; i++) 
+    int R_min_now = B[1], R_max_now = 0;
+
+    for(int i = 1; i<= Now_node; i++) 
     {
-        R_max = max(R_max, A[i]);
-        R_min = min(R_min, A[i]);
-        Now_avg += A[i];
+        R_max_now = max(R_max_now, B[i]);
+        R_min_now = min(R_min_now, B[i]);
+        Now_avg += B[i];
     }
 
-    Now_avg = (Now_avg / First_node);
+    Now_avg = (Now_avg / Now_node);
 
-    avg = first_avg - Now_avg;
+    Rank_avg("初期" , Now_avg); //平均ランク値出力
 
-    double R_avg = R_var(avg);
+    if(R_min_first == R_min_now)
+    {
+        cout << "最小値変化してないので経路変化なし" << endl;
+        return 0;
+    }
 
+    //cout <<"現在の平均ランク値：" << Now_avg << endl;
+
+    //求める
+    double R_avg = R_var(First_avg , Now_avg); 
+
+    cout << "R_avg:"<< R_avg << endl;
+    cout << "R_min_now, R_max_now:" << R_min_now <<", " << R_max_now <<endl;
     
-
-    double R_t = R_min + (abs(R_max - R_min)* abs(R_avg));
+    double R_t = R_min_now + (abs(R_max_now - R_min_now)* abs(R_avg));
 
     cout << "閾値："<< R_t << endl;
 
