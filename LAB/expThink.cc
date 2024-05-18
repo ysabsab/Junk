@@ -9,7 +9,7 @@ class algorithm{
         double R_var(double x, double y);
         double Expression(double max, double min , double avg);
         void Rank_avg(string x, double y);
-        double control();
+        int control();
 
 
 };
@@ -41,7 +41,7 @@ void algorithm::Rank_avg(string x, double y)
     cout << x <<"平均ランク値：" << y << endl;
 }
 
-double algorithm::control(){
+int algorithm::control(){
     int First_node, Now_node;
     
     cout << "初期ノード数:" ;
@@ -105,9 +105,14 @@ double algorithm::control(){
 
     cout << "閾値："<< R_t << endl;
 
+    return 0;
 }
+
+
 int main(){
    
+    algorithm first;
+    first.control();
 
     return 0;
 }
