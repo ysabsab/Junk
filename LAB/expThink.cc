@@ -2,8 +2,19 @@
 
 using namespace std;
 
+
+class algorithm{
+    public:
+        
+        double R_var(double x, double y);
+        double Expression(double max, double min , double avg);
+        void Rank_avg(string x, double y);
+        int control();
+
+
+};
 //式1
-double R_var(double x, double y){
+double algorithm::R_var(double x, double y){
     double avg  = x - y;
     if(avg >= 1)
     {
@@ -19,18 +30,18 @@ double R_var(double x, double y){
 }
 
 //式2
-double Expression(double max, double min , double avg){
+double algorithm::Expression(double max, double min , double avg){
 
     double Thredshold = min + (abs(max - min)* abs(avg));
     return Thredshold;
 }
 
-void Rank_avg(string x, double y)
+void algorithm::Rank_avg(string x, double y)
 {
     cout << x <<"平均ランク値：" << y << endl;
 }
 
-int main(){
+int algorithm::control(){
     int First_node, Now_node;
     
     cout << "初期ノード数:" ;
@@ -94,6 +105,14 @@ int main(){
 
     cout << "閾値："<< R_t << endl;
 
+    return 0;
+}
+
+
+int main(){
+   
+    algorithm first;
+    first.control();
 
     return 0;
 }
