@@ -110,7 +110,7 @@ int algorithm::control(){
 
 
 int main(){
-   
+    
     algorithm first;
     first.control();
 
