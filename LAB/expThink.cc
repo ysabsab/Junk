@@ -8,9 +8,10 @@ class algorithm{
         
         double R_var(double x, double y);
         double Expression(double max, double min , double avg);
-        void Rank_avg(string x, double y);
+        double Rank_avg(string H, double x , double y);
         int control();
 };
+
 //式1
 double algorithm::R_var(double x, double y){
     double avg  = x - y;
@@ -34,11 +35,13 @@ double algorithm::Expression(double max, double min , double avg){
     return T;
 }
 
-void algorithm::Rank_avg(string x, double y)
+ //平均値を求める
+double algorithm::Rank_avg(string H, double x , double y)
 {
-    cout << x <<"平均ランク値：" << y << endl;
+    double avg = (x / y);
+    cout << H <<"平均ランク値：" << avg << endl;
+    return avg;
 }
-
 
 int algorithm::control()
 {
@@ -53,17 +56,16 @@ int algorithm::control()
     //for(int i = 1; i<= First_node; i++) cin >> A[i];
 
     int R_min_first = A[1];
-    double First_avg = 0;
+    double First_sum = 0;
     for(int i = 1; i<= First_node; i++) 
         {
-            First_avg += A[i];
+            First_sum += A[i];
             R_min_first = min(R_min_first, A[i]);
         }
 
-    First_avg = (First_avg / First_node);
-
-    Rank_avg("初期" , First_avg); //平均ランク値出力
-    //cout <<"初期平均ランク値：" << First_avg << endl;
+    //初期平均値を求める
+    double First_avg = Rank_avg("初期" , First_sum , First_node); 
+    
 
     cout << "現在のノード数:" ;
     cin >> Now_node;
@@ -72,20 +74,18 @@ int algorithm::control()
     cout <<"現在の隣接ノードランク値をそれぞれ入力"<<endl;
     for(int i = 1; i<= Now_node; i++) cin >> B[i];
 
-    double Now_avg = 0;
-
+    double Now_sum = 0;
     int R_min_now = B[1], R_max_now = 0;
 
     for(int i = 1; i<= Now_node; i++) 
     {
         R_max_now = max(R_max_now, B[i]);
         R_min_now = min(R_min_now, B[i]);
-        Now_avg += B[i];
+        Now_sum += B[i];
     }
 
-    Now_avg = (Now_avg / Now_node);
-
-    Rank_avg("初期" , Now_avg); //平均ランク値出力
+    //現在の平均ランク値出力
+    double Now_avg = Rank_avg("現在" , Now_sum , Now_node);
 
     if(R_min_first == R_min_now)
     {
@@ -93,15 +93,13 @@ int algorithm::control()
         return 0;
     }
 
-    //cout <<"現在の平均ランク値：" << Now_avg << endl;
-
-    //求める
+    //式4.1,4.2
     double R_avg = R_var(First_avg , Now_avg); 
 
     cout << "R_avg:"<< R_avg << endl;
     cout << "R_min_now, R_max_now:" << R_min_now <<", " << R_max_now <<endl;
-    
-    //double R_t = R_min_now + (abs(R_max_now - R_min_now)* abs(R_avg));
+
+    //式4.3
     double R_t = Expression(R_max_now, R_min_now, R_avg);
 
     cout << "閾値："<< R_t << endl;
