@@ -10,8 +10,6 @@ class algorithm{
         double Expression(double max, double min , double avg);
         void Rank_avg(string x, double y);
         int control();
-
-
 };
 //式1
 double algorithm::R_var(double x, double y){
@@ -32,8 +30,8 @@ double algorithm::R_var(double x, double y){
 //式2
 double algorithm::Expression(double max, double min , double avg){
 
-    double Thredshold = min + (abs(max - min)* abs(avg));
-    return Thredshold;
+    double T = min + (abs(max - min)* abs(avg));
+    return T;
 }
 
 void algorithm::Rank_avg(string x, double y)
@@ -41,7 +39,9 @@ void algorithm::Rank_avg(string x, double y)
     cout << x <<"平均ランク値：" << y << endl;
 }
 
-int algorithm::control(){
+
+int algorithm::control()
+{
     int First_node, Now_node;
     
     cout << "初期ノード数:" ;
@@ -49,7 +49,8 @@ int algorithm::control(){
     int A[First_node+9];
 
     cout <<"初期ノードランク値をそれぞれ入力"<<endl;
-    for(int i = 1; i<= First_node; i++) cin >> A[i];
+
+    //for(int i = 1; i<= First_node; i++) cin >> A[i];
 
     int R_min_first = A[1];
     double First_avg = 0;
