@@ -53,7 +53,7 @@ int algorithm::control()
 
     cout <<"初期ノードランク値をそれぞれ入力"<<endl;
 
-    //for(int i = 1; i<= First_node; i++) cin >> A[i];
+    for(int i = 1; i<= First_node; i++) cin >> A[i];
 
     int R_min_first = A[1];
     double First_sum = 0;
@@ -64,9 +64,7 @@ int algorithm::control()
         }
 
     //初期平均値を求める
-    double First_avg = Rank_avg("初期" , First_sum , First_node); 
-    
-
+    double First_avg = Rank_avg("初期" , First_sum , First_node);     
     cout << "現在のノード数:" ;
     cin >> Now_node;
     int B[Now_node+9];
