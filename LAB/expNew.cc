@@ -85,7 +85,7 @@ int algorithm::control(){
     }
 
     Now_avg = ((Now_avg - R_max_now) / (Now_node - 1));
-
+//2
     Rank_avg("初期" , Now_avg); //平均ランク値出力
 
     if(R_min_first == R_min_now)
