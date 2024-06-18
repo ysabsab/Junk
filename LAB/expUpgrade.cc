@@ -32,8 +32,8 @@ double algorithm::R_var(double x, double y){
 //式2
 double algorithm::Expression(double max, double min , double avg){
 
-    double Thredshold = min + (abs(max - min)* abs(avg));
-    return Thredshold;
+    double Thr_exp = min + (abs(max - min)* abs(avg));
+    return Thr_exp;
 }
 
 void algorithm::Rank_avg(string x, double y)
