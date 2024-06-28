@@ -19,8 +19,8 @@ double calculateStdDev(const vector<double>& data, double mean) {
         sum += pow(value - mean, 2);
     }
 
-    double standard_diviation =  sqrt(sum / data.size());
-    return standard_diviation;
+    double standard_deviation =  sqrt(sum / data.size());
+    return standard_deviation;
 }
 
 // Zスコアを計算する関数
