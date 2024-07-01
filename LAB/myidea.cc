@@ -46,15 +46,25 @@ void print_zScore(const vector<double>& zScores, int count)
 }
 
 int main() {
-    vector<double> First_data = {7,7,8,9};
+    vector<double> First_data = {6,7,7,8,9,10};
     //vector<double> Second_data = {3,3,7,7,8,9,10};
     vector<double> Second_data = {5,6,7,7,8,9,13};
+    vector<double> Third_data = {3,3,7,7,8,9,10};
 
     vector<double> zScores_First = calculateZScores(First_data);
     vector<double> zScores_Second = calculateZScores(Second_data);
+    vector<double> zScores_Third = calculateZScores(Third_data);
     
+    double zScores_First_Avg = calculateMean(zScores_First);
+    double zScores_Second_Avg = calculateMean(zScores_Second);
+    double zScores_Third_Avg = calculateMean(zScores_Third);
+
     print_zScore(zScores_First, 1);
+    cout <<"1回目平均値" << zScores_First_Avg << endl;
     print_zScore(zScores_Second, 2);
+    cout <<"2回目平均値" << zScores_Second_Avg << endl;
+    print_zScore(zScores_Third, 2);
+    cout <<"3回目平均値" << zScores_Third_Avg << endl;
     
     return 0;
 }
